@@ -2,6 +2,8 @@ require( 'pg')
 require_relative("../db/sql_runner")
 
 class House
+attr_reader :id
+attr_accessor :house_name, :logo_url
 
 def initialize(options)
   @id = options['id'].to_i if options['id'] != nil
