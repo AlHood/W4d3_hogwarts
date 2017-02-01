@@ -15,13 +15,14 @@ def initialize(options)
   @id = options['id'].to_i if options['id'] != nil
   @first_name = options['first_name']
   @surname = options['surname']
-  @house = options['house']
+  @house_id = options['house_id'].to_i
   @age = options['age'].to_i
+
 
 end
 
 def save()
-  sql = "INSERT INTO students (first_name, surname, house, age) VALUES ('#{@first_name}', '#{@surname}', '#{house}', #{@age}) RETURNING *;"
+  sql = "INSERT INTO students (first_name, surname, house_id, age) VALUES ('#{@first_name}', '#{@surname}', #{@house_id}, #{@age}) RETURNING *;"
   student = SqlRunner.run( sql ).first
   @id = student['id'].to_i
 end
@@ -41,8 +42,11 @@ def self.find(id)
   return result
 end
 
-
-
-
+def house()
+sql = "SELECT * FROM houses WHERE id = #{@house_id};"
+result = SqlRunner.run(sql)
+result2 = House.new(result.first)
+return result2.house_name
+end
 
 end

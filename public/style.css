@@ -1,0 +1,9 @@
+body {
+background-color: darkblue;
+}
+
+h1, p {
+  background-color: blue;
+  color: lightyellow;
+  justify-content: flex-center;
+}
